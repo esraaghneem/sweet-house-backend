@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  A RESTful API backend for a modern dessert e-commerce application.
+  A full-stack dessert e-commerce application built with Laravel and React.
 </p>
 
 <p align="center">
@@ -31,11 +31,11 @@
 
 ## 🍰 About Sweet House
 
-**Sweet House** is a full-stack dessert e-commerce application built with a Laravel REST API backend and a React frontend.
+**Sweet House** is a full-stack dessert e-commerce application built with a **Laravel REST API backend** and a **React frontend**.
 
 The application allows customers to browse desserts, filter products by category, manage their shopping cart, create orders, and complete a simulated payment process.
 
-The project was designed with a focus on clean code, separation of responsibilities, authentication, validation, and scalable backend architecture.
+The project was designed with a focus on clean code, separation of responsibilities, authentication, validation, database relationships, and scalable architecture.
 
 ---
 
@@ -69,6 +69,7 @@ The project was designed with a focus on clean code, separation of responsibilit
 * User logout
 * Authenticated user information
 * Token-based authentication using Laravel Sanctum
+* Protected API endpoints
 
 ### 🍰 Products & Categories
 
@@ -102,7 +103,7 @@ The project was designed with a focus on clean code, separation of responsibilit
 
 The project includes a simulated payment system for demonstration and portfolio purposes.
 
-~~~
+```text
 Cart
   ↓
 Create Order
@@ -114,7 +115,7 @@ Simulated Payment
 Payment Successful
   ↓
 Order Confirmed
-~~~
+```
 
 No real payment provider or real money transactions are used.
 
@@ -124,7 +125,7 @@ No real payment provider or real money transactions are used.
 
 The backend follows a clean and organized Laravel architecture.
 
-~~~
+```text
 Request
    ↓
 Controller
@@ -136,11 +137,11 @@ Service
 Model
    ↓
 Database
-~~~
+```
 
 Main structure:
 
-~~~
+```text
 app/
 ├── Http/
 │   ├── Controllers/
@@ -153,7 +154,7 @@ app/
 ├── Models/
 │
 └── Services/
-~~~
+```
 
 Business logic is separated into Service Classes, validation is handled through Form Requests, and API responses are structured using Resources.
 
@@ -163,41 +164,41 @@ Business logic is separated into Service Classes, validation is handled through 
 
 ### Authentication
 
-| Method | Endpoint | Description |
-| ------ | -------- | ----------- |
-| POST | `/api/register` | Register a user |
-| POST | `/api/login` | Login |
-| POST | `/api/logout` | Logout |
-| GET | `/api/user` | Get authenticated user |
+| Method | Endpoint        | Description            |
+| ------ | --------------- | ---------------------- |
+| POST   | `/api/register` | Register a user        |
+| POST   | `/api/login`    | Login                  |
+| POST   | `/api/logout`   | Logout                 |
+| GET    | `/api/user`     | Get authenticated user |
 
 ### Categories
 
-| Method | Endpoint | Description |
-| ------ | -------- | ----------- |
-| GET | `/api/categories` | Get categories |
-| POST | `/api/categories` | Create category |
-| GET | `/api/categories/{id}` | Get category |
+| Method    | Endpoint               | Description     |
+| --------- | ---------------------- | --------------- |
+| GET       | `/api/categories`      | Get categories  |
+| POST      | `/api/categories`      | Create category |
+| GET       | `/api/categories/{id}` | Get category    |
 | PUT/PATCH | `/api/categories/{id}` | Update category |
-| DELETE | `/api/categories/{id}` | Delete category |
+| DELETE    | `/api/categories/{id}` | Delete category |
 
 ### Products
 
-| Method | Endpoint | Description |
-| ------ | -------- | ----------- |
-| GET | `/api/products` | Get products |
-| POST | `/api/products` | Create product |
-| GET | `/api/products/{id}` | Get product |
+| Method    | Endpoint             | Description    |
+| --------- | -------------------- | -------------- |
+| GET       | `/api/products`      | Get products   |
+| POST      | `/api/products`      | Create product |
+| GET       | `/api/products/{id}` | Get product    |
 | PUT/PATCH | `/api/products/{id}` | Update product |
-| DELETE | `/api/products/{id}` | Delete product |
+| DELETE    | `/api/products/{id}` | Delete product |
 
 ### Orders
 
-| Method | Endpoint | Description |
-| ------ | -------- | ----------- |
-| GET | `/api/orders` | Get user's orders |
-| POST | `/api/orders` | Create order |
-| GET | `/api/orders/{id}` | Get order |
-| POST | `/api/orders/{id}/payment` | Process simulated payment |
+| Method | Endpoint                   | Description               |
+| ------ | -------------------------- | ------------------------- |
+| GET    | `/api/orders`              | Get user's orders         |
+| POST   | `/api/orders`              | Create order              |
+| GET    | `/api/orders/{id}`         | Get order                 |
+| POST   | `/api/orders/{id}/payment` | Process simulated payment |
 
 ---
 
@@ -205,17 +206,17 @@ Business logic is separated into Service Classes, validation is handled through 
 
 Main entities:
 
-~~~
+```text
 users
 categories
 products
 orders
 order_items
-~~~
+```
 
 Relationships:
 
-~~~
+```text
 User
  └── hasMany Orders
 
@@ -232,7 +233,7 @@ OrderItem
 
 Product
  └── belongsTo Category
-~~~
+```
 
 ---
 
@@ -240,53 +241,53 @@ Product
 
 Clone the repository:
 
-~~~bash
+```bash
 git clone https://github.com/esraaghneem/sweet-house-backend.git
-~~~
+```
 
 Install dependencies:
 
-~~~bash
+```bash
 composer install
-~~~
+```
 
 Create the environment file:
 
-~~~bash
+```bash
 copy .env.example .env
-~~~
+```
 
 Generate the application key:
 
-~~~bash
+```bash
 php artisan key:generate
-~~~
+```
 
 Configure the database in `.env`.
 
 Run migrations:
 
-~~~bash
+```bash
 php artisan migrate
-~~~
+```
 
 Create the storage link:
 
-~~~bash
+```bash
 php artisan storage:link
-~~~
+```
 
 Start the Laravel server:
 
-~~~bash
+```bash
 php artisan serve
-~~~
+```
 
 The API will be available at:
 
-~~~
+```text
 http://127.0.0.1:8000/api
-~~~
+```
 
 ---
 
@@ -296,9 +297,9 @@ The API can be tested using **Postman** or through the React frontend.
 
 Protected endpoints use Laravel Sanctum authentication:
 
-~~~
+```text
 Authorization: Bearer YOUR_TOKEN
-~~~
+```
 
 ---
 
@@ -318,7 +319,10 @@ Authorization: Bearer YOUR_TOKEN
 
 **Esraa Ghneem**
 
-Backend Developer
+Full-Stack Developer
+
+* Backend: Laravel, PHP, MySQL, REST APIs
+* Frontend: React, JavaScript, Vite
 
 [GitHub](https://github.com/esraaghneem)
 
